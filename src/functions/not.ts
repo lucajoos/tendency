@@ -3,7 +3,6 @@ import match from './match'
 import some from './some'
 import min from './min'
 import max from './max'
-import any from './any'
 
 const invert = (flag: Flag): Flag => ({
   type: 'flag',
@@ -77,7 +76,7 @@ const not = {
    *
    *    not.max(1, 'a', 'b')
    */
-  max: (count: number, ...parameters: Parameter[]): Flag => invert(max(count, ...parameters)),
+  max: (count: number, ...parameters: Parameter[]): Flag => invert(max(count, ...parameters))
 }
 
 export default not
