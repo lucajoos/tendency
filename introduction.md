@@ -39,3 +39,4 @@ Configuration are inherited by underlying groups/arrays by default.
 ```javascript
 tendency({ separator: '-' }, 'a', 'b', 'c');
 // returns: 'a-b-c'
+```
