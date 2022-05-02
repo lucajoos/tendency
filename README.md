@@ -1,4 +1,4 @@
-# tendency v1.0.2
+# tendency v1.0.3
 
 Conditional string generation.
 
@@ -6,7 +6,7 @@ Conditional string generation.
 [![npm](https://img.shields.io/npm/dm/tendency)](https://www.npmjs.com/package/tendency)
 
 ```javascript
-import tendency, { not } from 'src/tendency';
+import tendency, { not } from 'tendency/lib/esm';
 
 tendency(true, 'a', 'b', [ false, not('c') ]);
 // returns: 'a b c'
@@ -23,13 +23,13 @@ $ npm i --save tendency
 As module:
 
 ```javascript
-import tendency from 'src/tendency';
+import tendency from 'tendency/lib/esm';
 ```
 
 In Node.js:
 
 ```javascript
-const tendency = require('src/tendency');
+const tendency = require('tendency/lib/cjs');
 ```
 
 ## Configuration
