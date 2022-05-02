@@ -12,8 +12,8 @@ describe('mixed', () => {
     expect(result).to.equal('a c d')
   })
 
-  it('any(), every(), not.any() & not.every()', () => {
-    const result = tendency(true, false, any('a', [false, every('b'), not.every('c', true, true, not.any('d'))]))
-    expect(result).to.equal('a c d')
+  it('any(), every(), & not.every()', () => {
+    const result = tendency(true, false, any('a', [false, every('b'), not.every('c')]))
+    expect(result).to.equal('a c')
   })
 })
