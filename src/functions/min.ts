@@ -1,4 +1,4 @@
-import { Flag, Parameter } from '../types'
+import { Flag, Parameter } from '../types/index'
 
 /**
  * Appends parameters if the minimum number of valid conditions are true.

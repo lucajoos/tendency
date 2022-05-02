@@ -1,4 +1,4 @@
-import { Flag, Parameter } from '../types'
+import { Flag, Parameter } from '../types/index'
 import match from './match'
 import some from './some'
 import min from './min'

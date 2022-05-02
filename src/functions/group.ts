@@ -1,4 +1,4 @@
-import Parameter from '../types/Parameter'
+import { Parameter } from '../types/index'
 
 /**
  * Groups parameters into independent environment.

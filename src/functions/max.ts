@@ -1,4 +1,4 @@
-import { Flag, Parameter } from '../types'
+import { Flag, Parameter } from '../types/index'
 
 /**
  * Appends parameters if the given maximum number of valid conditions is not exceeded.

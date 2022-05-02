@@ -1,4 +1,4 @@
-import Parameter from '../types/Parameter'
+import { Parameter } from '../types/index'
 
 /**
  * Appends parameters if all conditions are true.

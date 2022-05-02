@@ -1,4 +1,4 @@
-import tendency, { max, not } from '../src/tendency'
+import tendency, { max, not } from '../src/index'
 import { expect } from 'chai'
 
 describe('max()', () => {

@@ -1,4 +1,4 @@
-import tendency, { group } from '../src/tendency'
+import tendency, { group } from '../src/index'
 import { expect } from 'chai'
 
 describe('group()', () => {

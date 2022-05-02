@@ -1,42 +1,34 @@
 {
   "name": "tendency",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Conditional string generation",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "./lib/cjs/tendency.js",
+  "module": "./lib/esm/tendency.js",
+  "types": "./lib/esm/tendency.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lucajoos/tendency.git"
   },
+  "files": [
+    "lib"
+  ],
   "bugs": {
     "url": "https://github.com/lucajoos/tendency/issues"
   },
   "scripts": {
-    "start": "node lib/index.js",
-    "build-esm": "tsc --project tsconfig.esm.json",
-    "build-cjs": "tsc --project tsconfig.cjs.json",
-    "build": "yarn run build-cjs && yarn run build-esm",
-    "watch": "tsc --project tsconfig.cjs.json --watch",
+    "build": "tsc --project tsconfig.json && tsc --project ./tsconfig.cjs.json",
+    "watch": "tsc --project tsconfig.json && tsc --project ./tsconfig.cjs.json --watch",
     "lint": "ts-standard",
     "lint-fix": "ts-standard --fix",
-    "test": "mocha -r ts-node/register test/*.ts",
-    "docs": "jsdoc2md dist/esm/*.js dist/esm/functions/*.js >> README.md",
-    "all": "yarn run lint-fix && yarn run test && yarn run build && yarn run docs"
+    "test": "ts-mocha -p ./tsconfig.cjs.json test/**/*.test.ts",
+    "coverage": "nyc -e .ts -x 'test/*.test.ts' yarn run test",
+    "docs": "jsdoc2md lib/esm/*.js lib/esm/functions/*.js > api.md",
+    "all": "yarn run lint-fix && yarn run coverage && yarn run build && yarn run docs"
   },
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "module": "./dist/esm/index.js",
-      "import": "./dist/esm/index.js",
-      "default": "./dist/cjs/index.js"
-    }
-  },
-  "files": [
-    "**"
-  ],
   "keywords": [
-    "tendency"
+    "tendency",
+    "strings",
+    "conditions"
   ],
   "author": "Luca Joos <hello@lucajoos.de>",
   "license": "MIT",
@@ -50,8 +42,14 @@
     "chai": "^4.3.6",
     "jsdoc-to-markdown": "^7.1.1",
     "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "ts-mocha": "^9.0.2",
     "ts-node": "^10.7.0",
     "ts-standard": "^11.0.0",
     "typescript": "^4.6.4"
+  },
+  "dependencies": {},
+  "ts-standard": {
+    "project": "./tsconfig.lint.json"
   }
 }

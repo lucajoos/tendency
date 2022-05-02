@@ -1,4 +1,4 @@
-import tendency, { every } from '../src/tendency'
+import tendency, { every } from '../src/index'
 import { expect } from 'chai'
 
 describe('every()', () => {

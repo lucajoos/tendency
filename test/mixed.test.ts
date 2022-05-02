@@ -1,4 +1,4 @@
-import tendency, { any, every, match, max, min, not, some } from '../src/tendency'
+import tendency, { any, every, match, max, min, not, some } from '../src/index'
 import { expect } from 'chai'
 
 describe('mixed', () => {

@@ -1,5 +1,5 @@
-import { Config, Flag, Options, Parameter, State } from './types'
-import { any, every, group, match, max, min, not, some } from './functions'
+import { Config, Flag, Options, Parameter, State } from './types/index'
+import { any, every, group, match, max, min, not, some } from './functions/index'
 
 const resolve = (state: State, { options: template, parameters }: Flag): Parameter[] => {
   const options = Object.assign({

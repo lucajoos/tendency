@@ -1,4 +1,4 @@
-import tendency from '../src/tendency'
+import tendency from '../src/index'
 import { expect } from 'chai'
 
 describe('tendency()', () => {
