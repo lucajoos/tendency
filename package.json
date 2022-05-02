@@ -1,0 +1,57 @@
+{
+  "name": "tendency",
+  "version": "1.0.0",
+  "description": "Conditional string generation",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucajoos/tendency.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lucajoos/tendency/issues"
+  },
+  "scripts": {
+    "start": "node lib/index.js",
+    "build-esm": "tsc --project tsconfig.esm.json",
+    "build-cjs": "tsc --project tsconfig.cjs.json",
+    "build": "yarn run build-cjs && yarn run build-esm",
+    "watch": "tsc --project tsconfig.cjs.json --watch",
+    "lint": "ts-standard",
+    "lint-fix": "ts-standard --fix",
+    "test": "mocha -r ts-node/register test/*.ts",
+    "docs": "jsdoc2md dist/esm/*.js dist/esm/functions/*.js >> README.md",
+    "all": "yarn run lint-fix && yarn run test && yarn run build && yarn run docs"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "module": "./dist/esm/index.js",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "**"
+  ],
+  "keywords": [
+    "tendency"
+  ],
+  "author": "Luca Joos <hello@lucajoos.de>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.7.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^17.0.31",
+    "chai": "^4.3.6",
+    "jsdoc-to-markdown": "^7.1.1",
+    "mocha": "^10.0.0",
+    "ts-node": "^10.7.0",
+    "ts-standard": "^11.0.0",
+    "typescript": "^4.6.4"
+  }
+}
