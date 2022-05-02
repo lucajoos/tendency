@@ -33,7 +33,7 @@ const tendency = require('tendency/lib/cjs');
 ```
 
 ## Configuration
-Passing a [`Config`](../src/types/Config.d.ts) object overwrites the current configuration.
+Passing a [`Config`](src/types/Config.d.ts) object overwrites the current configuration.
 Configuration are inherited by underlying groups/arrays by default.
 
 ```javascript
