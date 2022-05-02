@@ -22,7 +22,7 @@
     "lint-fix": "ts-standard --fix",
     "test": "ts-mocha -p ./tsconfig.cjs.json test/**/*.test.ts",
     "coverage": "nyc -e .ts -x 'test/*.test.ts' yarn run test",
-    "docs": "jsdoc2md lib/esm/*.js lib/esm/functions/*.js >> README.md",
+    "docs": "jsdoc2md lib/esm/*.js lib/esm/functions/*.js > docs/api.md && paste docs/introduction.md docs/api.md > README.md",
     "all": "yarn run lint-fix && yarn run coverage && yarn run build && yarn run docs"
   },
   "keywords": [

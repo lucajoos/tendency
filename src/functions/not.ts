@@ -78,18 +78,6 @@ const not = {
    *    not.max(1, 'a', 'b')
    */
   max: (count: number, ...parameters: Parameter[]): Flag => invert(max(count, ...parameters)),
-
-  /**
-   * Appends parameters independently of the conditions.
-   * @function
-   * @param parameters {...Parameter} - Multiple parameters
-   * @return {Flag} - Corresponding Flag
-   *
-   * @example
-   *
-   *    not.any('a', 'b')
-   */
-  any: (...parameters: Parameter[]): Flag => any(...parameters)
 }
 
 export default not
