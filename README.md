@@ -1,4 +1,4 @@
-# tendency v1.0.3
+# tendency v1.1.1
 
 Conditional string generation.
 
