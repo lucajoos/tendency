@@ -1,7 +1,8 @@
 import { Flag, Parameter } from '../types/index'
 
 /**
- * Appends parameters if the given maximum number of valid conditions is not exceeded.
+ * Appends parameters if the given maximum number of true conditions is not exceeded.
+ * Parameters are also appended if the given count is exactly equal to the number of conditions.
  * @function
  * @param count {number} - Maximum number of valid conditions
  * @param parameters {...Parameter} - Multiple parameters
@@ -9,7 +10,14 @@ import { Flag, Parameter } from '../types/index'
  *
  * @example
  *
- *    max(1, 'a', 'b')
+ *    max(2, 'a', 'b')
+ *    // returns: 'a b'
+ *
+ *    max(2, true, 'a', 'b')
+ *    // returns: 'a b'
+ *
+ *    max(2, true, true, true, 'a', 'b')
+ *    // returns: ''
  */
 const max = (count: number, ...parameters: Parameter[]): Flag => {
   return {
