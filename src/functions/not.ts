@@ -73,6 +73,28 @@ const not = {
   max: (count: number, ...parameters: Parameter[]): Flag => invert(max(count, ...parameters)),
 
   /**
+   * Appends parameters if the minimum number of valid conditions are false.
+   * Parameters are also appended if the given count is exactly equal to the number of conditions.
+   * Inversion of the function min().
+   * @function
+   * @param count {number} - Minimum number of invalid conditions
+   * @param parameters {...Parameter} - Multiple parameters
+   * @return {Flag} - Corresponding Flag
+   *
+   * @example
+   *
+   *    tendency(not.min(1, 'a', 'b'))
+   *    // returns: ''
+   *
+   *    tendency(false, not.min(1, 'a', 'b'))
+   *    // returns: 'a b'
+   *
+   *    tendency(false, false, not.min(1, 'a', 'b'))
+   *    // returns: 'a b'
+   */
+  min: (count: number, ...parameters: Parameter[]): Flag => invert(min(count, ...parameters)),
+
+  /**
    * Appends parameters if at least one condition is invalid.
    * @function
    * @param parameters {...Parameter} - Multiple parameters
@@ -82,20 +104,7 @@ const not = {
    *
    *    not.some('a', 'b')
    */
-  some: (...parameters: Parameter[]): Flag => invert(some(...parameters)),
-
-  /**
-   * Appends parameters if the minimum number of conditions are false.
-   * @function
-   * @param count {number} - Minimum number of invalid conditions
-   * @param parameters {...Parameter} - Multiple parameters
-   * @return {Flag} - Corresponding Flag
-   *
-   * @example
-   *
-   *    not.min(1, 'a', 'b')
-   */
-  min: (count: number, ...parameters: Parameter[]): Flag => invert(min(count, ...parameters))
+  some: (...parameters: Parameter[]): Flag => invert(some(...parameters))
 }
 
 export default not
