@@ -10,6 +10,9 @@ import { Parameter } from '../types/index'
  *
  *    tendency(true, true, false, every('a', 'b'))
  *    returns: ''
+ *
+ *    tendency(true, true, every('a', 'b'))
+ *    returns: 'a b'
  */
 const every = (...parameters: Parameter[]): Parameter[] => parameters
 export default every

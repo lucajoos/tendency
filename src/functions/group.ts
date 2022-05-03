@@ -11,11 +11,21 @@ import { Parameter } from '../types/index'
  * @example
  *
  *    tendency(true, group(false, 'a', 'b'))
- *    returns: ''
+ *    // returns: ''
+ *
+ *    tendency(false, group(true, 'a', 'b'))
+ *    // returns: ''
+ *
+ *    tendency(true, group('a', 'b'))
+ *    // returns: 'a b'
+ *
+ *    tendency(true, group(true, 'a', 'b'))
+ *    // returns: 'a b'
+ *
  *
  * Alternatively:
  *    tendency(true, [false, 'a', 'b'])
- *    returns: ''
+ *    // returns: ''
  */
 const group = (...parameters: Parameter[]): Parameter[] => parameters
 export default group
