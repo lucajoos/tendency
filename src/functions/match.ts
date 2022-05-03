@@ -1,9 +1,9 @@
 import { Flag, Parameter } from '../types/index'
 
 /**
- * Appends parameters if the given count of conditions are true.
+ * Appends parameters if the given `count` of conditions are `true`.
  * @function
- * @param count {number} - Exact number of valid conditions
+ * @param count {number} - Exact number of `true` conditions
  * @param parameters {...Parameter} - Multiple parameters
  * @return {Flag} - Corresponding Flag
  *

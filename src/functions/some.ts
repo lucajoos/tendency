@@ -1,7 +1,7 @@
 import { Flag, Parameter } from '../types/index'
 
 /**
- * Appends parameters if at least one condition is true.
+ * Appends parameters if at least one condition is `true`.
  * This always refers to the current environment.
  * @function
  * @param parameters {...Parameter} - Multiple parameters

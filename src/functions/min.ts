@@ -1,10 +1,10 @@
 import { Flag, Parameter } from '../types/index'
 
 /**
- * Appends parameters if the minimum number of valid conditions are true.
- * Parameters are also appended if the given count is exactly equal to the number of conditions.
+ * Appends the parameters if the given minimum `count` of `true` conditions is met.
+ * Parameters are also appended if `count` is exactly equal to the number of conditions.
  * @function
- * @param count {number} - Minimum number of valid conditions
+ * @param count {number} - Minimum number of `true` conditions
  * @param parameters {...Parameter} - Multiple parameters
  * @return {Flag} - Corresponding Flag
  *

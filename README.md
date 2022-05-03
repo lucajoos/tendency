@@ -47,25 +47,32 @@ tendency({ separator: '-' }, 'a', 'b', 'c');
 <dd><p>Transforms specified parameters into joined string based on conditions.</p>
 </dd>
 <dt><a href="#any">any(...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters independently of the conditions.</p>
+<dd><p>Appends parameters independently of the conditions.
+These parameters are always appended.</p>
 </dd>
 <dt><a href="#every">every(...parameters)</a> ⇒ <code>Array.&lt;Parameter&gt;</code></dt>
-<dd><p>Appends parameters if all conditions are true.</p>
+<dd><p>Appends parameters if all conditions are <code>true</code>.
+This always refers to the current environment.</p>
 </dd>
 <dt><a href="#group">group(...parameters)</a> ⇒ <code>Array.&lt;Parameter&gt;</code></dt>
-<dd><p>Groups parameters into independent environment.</p>
+<dd><p>Groups parameters into independent environment.
+All previously set conditions will be reset as a result.
+Alternatively, parameters can be moved into a separate array.</p>
 </dd>
 <dt><a href="#match">match(count, ...parameters)</a> ⇒ <code>Flag</code></dt>
 <dd><p>Appends parameters if the given count of conditions are true.</p>
 </dd>
 <dt><a href="#max">max(count, ...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters if the given maximum number of valid conditions is not exceeded.</p>
+<dd><p>Appends parameters if the given maximum number of true conditions is not exceeded.
+Parameters are also appended if the given count is exactly equal to the number of conditions.</p>
 </dd>
 <dt><a href="#min">min(count, ...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters if the minimum number of valid conditions are true.</p>
+<dd><p>Appends parameters if the minimum number of valid conditions are true.
+Parameters are also appended if the given count is exactly equal to the number of conditions.</p>
 </dd>
 <dt><a href="#some">some(...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters if at least one condition is valid.</p>
+<dd><p>Appends parameters if at least one condition is true.
+This always refers to the current environment.</p>
 </dd>
 </dl>
 
@@ -89,6 +96,7 @@ tendency(true, 'a', 'b')
 
 ## any(...parameters) ⇒ <code>Flag</code>
 Appends parameters independently of the conditions.
+These parameters are always appended.
 
 **Kind**: global function  
 **Returns**: <code>Flag</code> - - Corresponding Flag  
@@ -99,12 +107,20 @@ Appends parameters independently of the conditions.
 
 **Example**  
 ```js
-any('a', 'b')
+tendency(true, any('a', 'b'))
+   // returns: 'a b'
+
+   tendency(false, any('a', 'b'))
+   // returns: ''
+
+   tendency(true, false, any('a', 'b'))
+   // returns: 'a b'
 ```
 <a name="every"></a>
 
 ## every(...parameters) ⇒ <code>Array.&lt;Parameter&gt;</code>
-Appends parameters if all conditions are true.
+Appends parameters if all conditions are `true`.
+This always refers to the current environment.
 
 **Kind**: global function  
 **Returns**: <code>Array.&lt;Parameter&gt;</code> - - Specified parameters  
@@ -115,12 +131,18 @@ Appends parameters if all conditions are true.
 
 **Example**  
 ```js
-every('a', 'b')
+tendency(true, false, every('a', 'b'))
+   returns: ''
+
+   tendency(true, true, every('a', 'b'))
+   returns: 'a b'
 ```
 <a name="group"></a>
 
 ## group(...parameters) ⇒ <code>Array.&lt;Parameter&gt;</code>
 Groups parameters into independent environment.
+All previously set conditions will be reset as a result.
+Alternatively, parameters can be moved into a separate array.
 
 **Kind**: global function  
 **Returns**: <code>Array.&lt;Parameter&gt;</code> - - Specified parameters  
@@ -131,7 +153,22 @@ Groups parameters into independent environment.
 
 **Example**  
 ```js
-group('a', 'b')
+tendency(true, group(false, 'a', 'b'))
+   // returns: ''
+
+   tendency(false, group(true, 'a', 'b'))
+   // returns: ''
+
+   tendency(true, group('a', 'b'))
+   // returns: 'a b'
+
+   tendency(true, group(true, 'a', 'b'))
+   // returns: 'a b'
+
+
+Alternatively:
+   tendency(true, [false, 'a', 'b'])
+   // returns: ''
 ```
 <a name="match"></a>
 
@@ -148,12 +185,17 @@ Appends parameters if the given count of conditions are true.
 
 **Example**  
 ```js
-match(1, 'a', 'b')
+tendency(true, false, match(2, 'a', 'b'))
+   // returns: ''
+
+   tendency(true, true, match(2, 'a', 'b'))
+   // returns: 'a b'
 ```
 <a name="max"></a>
 
 ## max(count, ...parameters) ⇒ <code>Flag</code>
-Appends parameters if the given maximum number of valid conditions is not exceeded.
+Appends parameters if the given maximum number of true conditions is not exceeded.
+Parameters are also appended if the given count is exactly equal to the number of conditions.
 
 **Kind**: global function  
 **Returns**: <code>Flag</code> - - Corresponding Flag  
@@ -165,12 +207,20 @@ Appends parameters if the given maximum number of valid conditions is not exceed
 
 **Example**  
 ```js
-max(1, 'a', 'b')
+tendency(max(1, 'a', 'b'))
+   // returns: 'a b'
+
+   tendency(true, max(1, 'a', 'b'))
+   // returns: 'a b'
+
+   tendency(true, true, max(1, 'a', 'b'))
+   // returns: ''
 ```
 <a name="min"></a>
 
 ## min(count, ...parameters) ⇒ <code>Flag</code>
 Appends parameters if the minimum number of valid conditions are true.
+Parameters are also appended if the given count is exactly equal to the number of conditions.
 
 **Kind**: global function  
 **Returns**: <code>Flag</code> - - Corresponding Flag  
@@ -182,12 +232,20 @@ Appends parameters if the minimum number of valid conditions are true.
 
 **Example**  
 ```js
-min(1, 'a', 'b')
+tendency(min(1, 'a', 'b'))
+   // returns: ''
+
+   tendency(true, min(1, 'a', 'b'))
+   // returns: 'a b'
+
+   tendency(true, true, min(1, 'a', 'b'))
+   // returns: 'a b'
 ```
 <a name="some"></a>
 
 ## some(...parameters) ⇒ <code>Flag</code>
-Appends parameters if at least one condition is valid.
+Appends parameters if at least one condition is true.
+This always refers to the current environment.
 
 **Kind**: global function  
 **Returns**: <code>Flag</code> - - Corresponding Flag  
@@ -198,5 +256,12 @@ Appends parameters if at least one condition is valid.
 
 **Example**  
 ```js
-some('a', 'b')
+tendency(some('a', 'b'))
+   // returns: ''
+
+   tendency(true, some('a', 'b'))
+   // returns: 'a b'
+
+   tendency(true, false, some('a', 'b'))
+   // returns: 'a b'
 ```

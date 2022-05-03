@@ -12,7 +12,7 @@ const invert = (flag: Flag): Flag => ({
 
 const not = {
   /**
-   * Appends parameters if all conditions are false.
+   * Appends parameters if all conditions are `false`.
    * This always refers to the current environment.
    * Inversion of the function every().
    * @function
@@ -34,7 +34,7 @@ const not = {
   }),
 
   /**
-   * Appends parameters if the given count of conditions are false.
+   * Appends parameters if the given count of conditions are `false`.
    * Inversion of the function match().
    * @function
    * @param count {number} - Exact number of invalid conditions
@@ -52,11 +52,11 @@ const not = {
   match: (count: number, ...parameters: Parameter[]): Flag => invert(match(count, ...parameters)),
 
   /**
-   * Appends parameters if the given maximum number of false conditions is not exceeded.
-   * Parameters are also appended if the given count is exactly equal to the number of conditions.
+   * Appends parameters if the given maximum `count` of `false` conditions is not exceeded.
+   * Parameters are also appended if `count` is exactly equal to the number of conditions.
    * Inversion of the function max().
    * @function
-   * @param count {number} - Maximum number of invalid conditions
+   * @param count {number} - Maximum number of `false` conditions
    * @param parameters {...Parameter} - Multiple parameters
    * @return {Flag} - Corresponding Flag
    *
@@ -74,11 +74,11 @@ const not = {
   max: (count: number, ...parameters: Parameter[]): Flag => invert(max(count, ...parameters)),
 
   /**
-   * Appends parameters if the minimum number of valid conditions are false.
-   * Parameters are also appended if the given count is exactly equal to the number of conditions.
+   * Appends the parameters if the given minimum `count` of `false` conditions is met.
+   * Parameters are also appended if `count` is exactly equal to the number of conditions.
    * Inversion of the function min().
    * @function
-   * @param count {number} - Minimum number of invalid conditions
+   * @param count {number} - Minimum number of `false` conditions
    * @param parameters {...Parameter} - Multiple parameters
    * @return {Flag} - Corresponding Flag
    *
@@ -96,7 +96,7 @@ const not = {
   min: (count: number, ...parameters: Parameter[]): Flag => invert(min(count, ...parameters)),
 
   /**
-   * Appends parameters if at least one condition is false.
+   * Appends parameters if at least one condition is `false`.
    * This always refers to the current environment.
    * Inversion of the function some().
    * @function

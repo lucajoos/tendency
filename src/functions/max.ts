@@ -1,10 +1,10 @@
 import { Flag, Parameter } from '../types/index'
 
 /**
- * Appends parameters if the given maximum number of true conditions is not exceeded.
- * Parameters are also appended if the given count is exactly equal to the number of conditions.
+ * Appends parameters if the given maximum `count` of `true` conditions is not exceeded.
+ * Parameters are also appended if `count` is exactly equal to the number of conditions.
  * @function
- * @param count {number} - Maximum number of valid conditions
+ * @param count {number} - Maximum number of `true` conditions
  * @param parameters {...Parameter} - Multiple parameters
  * @return {Flag} - Corresponding Flag
  *

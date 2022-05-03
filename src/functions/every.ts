@@ -1,7 +1,7 @@
 import { Parameter } from '../types/index'
 
 /**
- * Appends parameters if all conditions are true.
+ * Appends parameters if all conditions are `true`.
  * This always refers to the current environment.
  * @function
  * @param parameters {...Parameter} - Multiple parameters
