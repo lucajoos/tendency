@@ -1,4 +1,4 @@
-# tendency v1.2.0
+# tendency v1.2.1
 
 Conditional string generation.
 
@@ -8,7 +8,7 @@ Conditional string generation.
 ```javascript
 import tendency, { not } from 'tendency/lib/esm';
 
-tendency(true, 'a', 'b', [ false, not('c') ]);
+tendency(true, 'a', 'b', [ false, not.every('c') ]);
 // returns: 'a b c'
 ```
 

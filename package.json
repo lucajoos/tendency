@@ -1,6 +1,6 @@
 {
   "name": "tendency",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Conditional string generation",
   "main": "./lib/cjs/tendency.js",
   "module": "./lib/esm/tendency.js",
