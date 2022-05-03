@@ -10,14 +10,14 @@ import { Flag, Parameter } from '../types/index'
  *
  * @example
  *
- *    tendency(max(1, 'a', 'b'))
- *    // returns: 'a b'
+ * tendency(max(1, 'a', 'b'))
+ * // returns: 'a b'
  *
- *    tendency(true, max(1, 'a', 'b'))
- *    // returns: 'a b'
+ * tendency(true, max(1, 'a', 'b'))
+ * // returns: 'a b'
  *
- *    tendency(true, true, max(1, 'a', 'b'))
- *    // returns: ''
+ * tendency(true, true, max(1, 'a', 'b'))
+ * // returns: ''
  */
 const max = (count: number, ...parameters: Parameter[]): Flag => {
   return {

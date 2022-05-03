@@ -63,13 +63,18 @@ const parse = (parameters: Parameter[]): string => {
 
 /**
  * Transforms specified parameters into joined string based on conditions.
+ * If no conditions are given, the given environment is both `true` and `false`.
+ *
+ * If no flags are given, the flag returned from `every()` is assumed.
+ * Thus all conditions of the current environment must be `true`.
  * @function
  * @param parameters {...Parameter} - Multiple parameters
- * @return {string} - Converted result
+ * @return {string} - Generated string
  *
  * @example
  *
- *    tendency(true, 'a', 'b')
+ * tendency(true, 'a', 'b')
+ * // returns: 'a b'
  */
 const tendency = (...parameters: Parameter[]): string => parse(parameters)
 export default tendency

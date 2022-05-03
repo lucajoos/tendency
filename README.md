@@ -40,6 +40,14 @@ Configuration are inherited by underlying groups/arrays by default.
 tendency({ separator: '-' }, 'a', 'b', 'c');
 // returns: 'a-b-c'
 ```
+## Members
+
+<dl>
+<dt><a href="#not">not</a></dt>
+<dd><p>Provides inversions of all given functions.</p>
+</dd>
+</dl>
+
 ## Functions
 
 <dl>
@@ -60,22 +68,157 @@ All previously set conditions will be reset as a result.
 Alternatively, parameters can be moved into a separate array.</p>
 </dd>
 <dt><a href="#match">match(count, ...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters if the given count of conditions are true.</p>
+<dd><p>Appends parameters if the given <code>count</code> of conditions are <code>true</code>.</p>
 </dd>
 <dt><a href="#max">max(count, ...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters if the given maximum number of true conditions is not exceeded.
-Parameters are also appended if the given count is exactly equal to the number of conditions.</p>
+<dd><p>Appends parameters if the given maximum <code>count</code> of <code>true</code> conditions is not exceeded.
+Parameters are also appended if <code>count</code> is exactly equal to the number of conditions.</p>
 </dd>
 <dt><a href="#min">min(count, ...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters if the minimum number of valid conditions are true.
-Parameters are also appended if the given count is exactly equal to the number of conditions.</p>
+<dd><p>Appends the parameters if the given minimum <code>count</code> of <code>true</code> conditions is met.
+Parameters are also appended if <code>count</code> is exactly equal to the number of conditions.</p>
 </dd>
 <dt><a href="#some">some(...parameters)</a> ⇒ <code>Flag</code></dt>
-<dd><p>Appends parameters if at least one condition is true.
+<dd><p>Appends parameters if at least one condition is <code>true</code>.
 This always refers to the current environment.</p>
 </dd>
 </dl>
 
+<a name="not"></a>
+
+## not
+Provides inversions of all given functions.
+
+**Kind**: global variable  
+
+* [not](#not)
+    * [.every(...parameters)](#not.every) ⇒ <code>Array.&lt;Parameter&gt;</code>
+    * [.match(count, ...parameters)](#not.match) ⇒ <code>Flag</code>
+    * [.max(count, ...parameters)](#not.max) ⇒ <code>Flag</code>
+    * [.min(count, ...parameters)](#not.min) ⇒ <code>Flag</code>
+    * [.some(...parameters)](#not.some) ⇒ <code>Flag</code>
+
+<a name="not.every"></a>
+
+### not.every(...parameters) ⇒ <code>Array.&lt;Parameter&gt;</code>
+Appends parameters if all conditions are `false`.
+This always refers to the current environment.
+Inversion of the function every().
+
+**Kind**: static method of [<code>not</code>](#not)  
+**Returns**: <code>Array.&lt;Parameter&gt;</code> - - Specified parameters  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...parameters | <code>Parameter</code> | Multiple parameters |
+
+**Example**  
+```js
+tendency(false, false, true, not.every('a', 'b'))
+  returns: ''
+
+  tendency(false, false, not.every('a', 'b'))
+  returns: 'a b'
+```
+<a name="not.match"></a>
+
+### not.match(count, ...parameters) ⇒ <code>Flag</code>
+Appends parameters if the given count of conditions are `false`.
+Inversion of the function match().
+
+**Kind**: static method of [<code>not</code>](#not)  
+**Returns**: <code>Flag</code> - - Corresponding flag  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| count | <code>number</code> | Exact number of invalid conditions |
+| ...parameters | <code>Parameter</code> | Multiple parameters |
+
+**Example**  
+```js
+tendency(true, false, not.match(2, 'a', 'b'))
+   // returns: ''
+
+   tendency(false, false, not.match(2, 'a', 'b'))
+   // returns: 'a b'
+```
+<a name="not.max"></a>
+
+### not.max(count, ...parameters) ⇒ <code>Flag</code>
+Appends parameters if the given maximum `count` of `false` conditions is not exceeded.
+Parameters are also appended if `count` is exactly equal to the number of conditions.
+Inversion of the function max().
+
+**Kind**: static method of [<code>not</code>](#not)  
+**Returns**: <code>Flag</code> - - Corresponding flag  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| count | <code>number</code> | Maximum number of `false` conditions |
+| ...parameters | <code>Parameter</code> | Multiple parameters |
+
+**Example**  
+```js
+tendency(not.max(1, 'a', 'b'))
+   // returns: 'a b'
+
+   tendency(false, not.max(1, 'a', 'b'))
+   // returns: 'a b'
+
+   tendency(false, false, not.max(1, 'a', 'b'))
+   // returns: ''
+```
+<a name="not.min"></a>
+
+### not.min(count, ...parameters) ⇒ <code>Flag</code>
+Appends the parameters if the given minimum `count` of `false` conditions is met.
+Parameters are also appended if `count` is exactly equal to the number of conditions.
+Inversion of the function min().
+
+**Kind**: static method of [<code>not</code>](#not)  
+**Returns**: <code>Flag</code> - - Corresponding flag  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| count | <code>number</code> | Minimum number of `false` conditions |
+| ...parameters | <code>Parameter</code> | Multiple parameters |
+
+**Example**  
+```js
+tendency(not.min(1, 'a', 'b'))
+   // returns: ''
+
+   tendency(false, not.min(1, 'a', 'b'))
+   // returns: 'a b'
+
+   tendency(false, false, not.min(1, 'a', 'b'))
+   // returns: 'a b'
+```
+<a name="not.some"></a>
+
+### not.some(...parameters) ⇒ <code>Flag</code>
+Appends parameters if at least one condition is `false`.
+This always refers to the current environment.
+Inversion of the function some().
+
+**Kind**: static method of [<code>not</code>](#not)  
+**Returns**: <code>Flag</code> - - Corresponding flag  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...parameters | <code>Parameter</code> | Multiple parameters |
+
+**Example**  
+```js
+tendency(not.some('a', 'b'))
+   // returns: ''
+
+   tendency(false, not.some('a', 'b'))
+   // returns: 'a b'
+
+   tendency(true, false, not.some('a', 'b'))
+   // returns: 'a b'
+```
 <a name="tendency"></a>
 
 ## tendency(...parameters) ⇒ <code>string</code>
@@ -99,7 +242,7 @@ Appends parameters independently of the conditions.
 These parameters are always appended.
 
 **Kind**: global function  
-**Returns**: <code>Flag</code> - - Corresponding Flag  
+**Returns**: <code>Flag</code> - - Corresponding flag  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -108,13 +251,13 @@ These parameters are always appended.
 **Example**  
 ```js
 tendency(true, any('a', 'b'))
-   // returns: 'a b'
+// returns: 'a b'
 
-   tendency(false, any('a', 'b'))
-   // returns: ''
+tendency(false, any('a', 'b'))
+// returns: ''
 
-   tendency(true, false, any('a', 'b'))
-   // returns: 'a b'
+tendency(true, false, any('a', 'b'))
+// returns: 'a b'
 ```
 <a name="every"></a>
 
@@ -173,14 +316,14 @@ Alternatively:
 <a name="match"></a>
 
 ## match(count, ...parameters) ⇒ <code>Flag</code>
-Appends parameters if the given count of conditions are true.
+Appends parameters if the given `count` of conditions are `true`.
 
 **Kind**: global function  
-**Returns**: <code>Flag</code> - - Corresponding Flag  
+**Returns**: <code>Flag</code> - - Corresponding flag  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| count | <code>number</code> | Exact number of valid conditions |
+| count | <code>number</code> | Exact number of `true` conditions |
 | ...parameters | <code>Parameter</code> | Multiple parameters |
 
 **Example**  
@@ -194,15 +337,15 @@ tendency(true, false, match(2, 'a', 'b'))
 <a name="max"></a>
 
 ## max(count, ...parameters) ⇒ <code>Flag</code>
-Appends parameters if the given maximum number of true conditions is not exceeded.
-Parameters are also appended if the given count is exactly equal to the number of conditions.
+Appends parameters if the given maximum `count` of `true` conditions is not exceeded.
+Parameters are also appended if `count` is exactly equal to the number of conditions.
 
 **Kind**: global function  
-**Returns**: <code>Flag</code> - - Corresponding Flag  
+**Returns**: <code>Flag</code> - - Corresponding flag  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| count | <code>number</code> | Maximum number of valid conditions |
+| count | <code>number</code> | Maximum number of `true` conditions |
 | ...parameters | <code>Parameter</code> | Multiple parameters |
 
 **Example**  
@@ -219,15 +362,15 @@ tendency(max(1, 'a', 'b'))
 <a name="min"></a>
 
 ## min(count, ...parameters) ⇒ <code>Flag</code>
-Appends parameters if the minimum number of valid conditions are true.
-Parameters are also appended if the given count is exactly equal to the number of conditions.
+Appends the parameters if the given minimum `count` of `true` conditions is met.
+Parameters are also appended if `count` is exactly equal to the number of conditions.
 
 **Kind**: global function  
-**Returns**: <code>Flag</code> - - Corresponding Flag  
+**Returns**: <code>Flag</code> - - Corresponding flag  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| count | <code>number</code> | Minimum number of valid conditions |
+| count | <code>number</code> | Minimum number of `true` conditions |
 | ...parameters | <code>Parameter</code> | Multiple parameters |
 
 **Example**  
@@ -244,11 +387,11 @@ tendency(min(1, 'a', 'b'))
 <a name="some"></a>
 
 ## some(...parameters) ⇒ <code>Flag</code>
-Appends parameters if at least one condition is true.
+Appends parameters if at least one condition is `true`.
 This always refers to the current environment.
 
 **Kind**: global function  
-**Returns**: <code>Flag</code> - - Corresponding Flag  
+**Returns**: <code>Flag</code> - - Corresponding flag  
 
 | Param | Type | Description |
 | --- | --- | --- |

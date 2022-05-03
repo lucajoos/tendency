@@ -10,22 +10,27 @@ const invert = (flag: Flag): Flag => ({
   parameters: flag.parameters
 })
 
+/**
+ * Provides inversions of all given functions.
+ * @name not
+ */
 const not = {
   /**
    * Appends parameters if all conditions are `false`.
    * This always refers to the current environment.
    * Inversion of the function every().
    * @function
+   * @memberOf not
    * @param parameters {...Parameter} - Multiple parameters
    * @return {Parameter[]} - Specified parameters
    *
    * @example
    *
-   *   tendency(false, false, true, not.every('a', 'b'))
-   *   returns: ''
+   * tendency(false, false, true, not.every('a', 'b'))
+   * // returns: ''
    *
-   *   tendency(false, false, not.every('a', 'b'))
-   *   returns: 'a b'
+   * tendency(false, false, not.every('a', 'b'))
+   * // returns: 'a b'
    */
   every: (...parameters: Parameter[]): Flag => ({
     type: 'flag',
@@ -43,11 +48,11 @@ const not = {
    *
    * @example
    *
-   *    tendency(true, false, not.match(2, 'a', 'b'))
-   *    // returns: ''
+   * tendency(true, false, not.match(2, 'a', 'b'))
+   * // returns: ''
    *
-   *    tendency(false, false, not.match(2, 'a', 'b'))
-   *    // returns: 'a b'
+   * tendency(false, false, not.match(2, 'a', 'b'))
+   * // returns: 'a b'
    */
   match: (count: number, ...parameters: Parameter[]): Flag => invert(match(count, ...parameters)),
 
@@ -62,14 +67,14 @@ const not = {
    *
    * @example
    *
-   *    tendency(not.max(1, 'a', 'b'))
-   *    // returns: 'a b'
+   * tendency(not.max(1, 'a', 'b'))
+   * // returns: 'a b'
    *
-   *    tendency(false, not.max(1, 'a', 'b'))
-   *    // returns: 'a b'
+   * tendency(false, not.max(1, 'a', 'b'))
+   * // returns: 'a b'
    *
-   *    tendency(false, false, not.max(1, 'a', 'b'))
-   *    // returns: ''
+   * tendency(false, false, not.max(1, 'a', 'b'))
+   * // returns: ''
    */
   max: (count: number, ...parameters: Parameter[]): Flag => invert(max(count, ...parameters)),
 
@@ -84,14 +89,14 @@ const not = {
    *
    * @example
    *
-   *    tendency(not.min(1, 'a', 'b'))
-   *    // returns: ''
+   * tendency(not.min(1, 'a', 'b'))
+   * // returns: ''
    *
-   *    tendency(false, not.min(1, 'a', 'b'))
-   *    // returns: 'a b'
+   * tendency(false, not.min(1, 'a', 'b'))
+   * // returns: 'a b'
    *
-   *    tendency(false, false, not.min(1, 'a', 'b'))
-   *    // returns: 'a b'
+   * tendency(false, false, not.min(1, 'a', 'b'))
+   * // returns: 'a b'
    */
   min: (count: number, ...parameters: Parameter[]): Flag => invert(min(count, ...parameters)),
 
@@ -105,14 +110,14 @@ const not = {
    *
    * @example
    *
-   *    tendency(not.some('a', 'b'))
-   *    // returns: ''
+   * tendency(not.some('a', 'b'))
+   * // returns: ''
    *
-   *    tendency(false, not.some('a', 'b'))
-   *    // returns: 'a b'
+   * tendency(false, not.some('a', 'b'))
+   * // returns: 'a b'
    *
-   *    tendency(true, false, not.some('a', 'b'))
-   *    // returns: 'a b'
+   * tendency(true, false, not.some('a', 'b'))
+   * // returns: 'a b'
    */
   some: (...parameters: Parameter[]): Flag => invert(some(...parameters))
 }

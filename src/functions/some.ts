@@ -9,14 +9,14 @@ import { Flag, Parameter } from '../types/index'
  *
  * @example
  *
- *    tendency(some('a', 'b'))
- *    // returns: ''
+ * tendency(some('a', 'b'))
+ * // returns: ''
  *
- *    tendency(true, some('a', 'b'))
- *    // returns: 'a b'
+ * tendency(true, some('a', 'b'))
+ * // returns: 'a b'
  *
- *    tendency(true, false, some('a', 'b'))
- *    // returns: 'a b'
+ * tendency(true, false, some('a', 'b'))
+ * // returns: 'a b'
  */
 const some = (...parameters: Parameter[]): Flag => {
   return {
