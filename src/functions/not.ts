@@ -13,13 +13,18 @@ const invert = (flag: Flag): Flag => ({
 const not = {
   /**
    * Appends parameters if all conditions are false.
+   * Inversion of the function every().
    * @function
    * @param parameters {...Parameter} - Multiple parameters
    * @return {Parameter[]} - Specified parameters
    *
    * @example
    *
-   *    not.every('a', 'b')
+   *   tendency(false, false, true, not.every('a', 'b'))
+   *   returns: ''
+   *
+   *   tendency(false, false, not.every('a', 'b'))
+   *   returns: 'a b'
    */
   every: (...parameters: Parameter[]): Flag => ({
     type: 'flag',
