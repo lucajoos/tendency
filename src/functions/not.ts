@@ -95,14 +95,22 @@ const not = {
   min: (count: number, ...parameters: Parameter[]): Flag => invert(min(count, ...parameters)),
 
   /**
-   * Appends parameters if at least one condition is invalid.
+   * Appends parameters if at least one condition is false.
+   * Inversion of the function some().
    * @function
    * @param parameters {...Parameter} - Multiple parameters
    * @return {Flag} - Corresponding Flag
    *
    * @example
    *
-   *    not.some('a', 'b')
+   *    tendency(not.some('a', 'b'))
+   *    // returns: ''
+   *
+   *    tendency(false, not.some('a', 'b'))
+   *    // returns: 'a b'
+   *
+   *    tendency(true, false, not.some('a', 'b'))
+   *    // returns: 'a b'
    */
   some: (...parameters: Parameter[]): Flag => invert(some(...parameters))
 }
