@@ -2,6 +2,7 @@ import { Parameter } from '../types/index'
 
 /**
  * Groups parameters into independent environment.
+ * All previously set conditions will be reset as a result.
  * Alternatively, parameters can be moved into a separate array.
  * @function
  * @param parameters {...Parameter} - Multiple parameters
