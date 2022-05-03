@@ -5,7 +5,7 @@ import { Flag, Parameter } from '../types/index'
  * These parameters are always appended.
  * @function
  * @param parameters {...Parameter} - Multiple parameters
- * @return {Flag} - Corresponding Flag
+ * @return {Flag} - Corresponding flag
  *
  * @example
  *

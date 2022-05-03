@@ -39,7 +39,7 @@ const not = {
    * @function
    * @param count {number} - Exact number of invalid conditions
    * @param parameters {...Parameter} - Multiple parameters
-   * @return {Flag} - Corresponding Flag
+   * @return {Flag} - Corresponding flag
    *
    * @example
    *
@@ -58,7 +58,7 @@ const not = {
    * @function
    * @param count {number} - Maximum number of `false` conditions
    * @param parameters {...Parameter} - Multiple parameters
-   * @return {Flag} - Corresponding Flag
+   * @return {Flag} - Corresponding flag
    *
    * @example
    *
@@ -80,7 +80,7 @@ const not = {
    * @function
    * @param count {number} - Minimum number of `false` conditions
    * @param parameters {...Parameter} - Multiple parameters
-   * @return {Flag} - Corresponding Flag
+   * @return {Flag} - Corresponding flag
    *
    * @example
    *
@@ -101,7 +101,7 @@ const not = {
    * Inversion of the function some().
    * @function
    * @param parameters {...Parameter} - Multiple parameters
-   * @return {Flag} - Corresponding Flag
+   * @return {Flag} - Corresponding flag
    *
    * @example
    *

@@ -6,7 +6,7 @@ import { Flag, Parameter } from '../types/index'
  * @function
  * @param count {number} - Maximum number of `true` conditions
  * @param parameters {...Parameter} - Multiple parameters
- * @return {Flag} - Corresponding Flag
+ * @return {Flag} - Corresponding flag
  *
  * @example
  *

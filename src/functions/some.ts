@@ -5,7 +5,7 @@ import { Flag, Parameter } from '../types/index'
  * This always refers to the current environment.
  * @function
  * @param parameters {...Parameter} - Multiple parameters
- * @return {Flag} - Corresponding Flag
+ * @return {Flag} - Corresponding flag
  *
  * @example
  *
