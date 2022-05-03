@@ -1,4 +1,4 @@
-# tendency v1.1.1
+# tendency v1.2.0
 
 Conditional string generation.
 
@@ -52,7 +52,10 @@ tendency({ separator: '-' }, 'a', 'b', 'c');
 
 <dl>
 <dt><a href="#tendency">tendency(...parameters)</a> ⇒ <code>string</code></dt>
-<dd><p>Transforms specified parameters into joined string based on conditions.</p>
+<dd><p>Transforms specified parameters into joined string based on conditions.
+If no conditions are given, the given environment is both <code>true</code> and <code>false</code>.</p>
+<p>If no flags are given, the flag returned from <code>every()</code> is assumed.
+Thus all conditions of the current environment must be <code>true</code>.</p>
 </dd>
 <dt><a href="#any">any(...parameters)</a> ⇒ <code>Flag</code></dt>
 <dd><p>Appends parameters independently of the conditions.
@@ -115,10 +118,10 @@ Inversion of the function every().
 **Example**  
 ```js
 tendency(false, false, true, not.every('a', 'b'))
-  returns: ''
+// returns: ''
 
-  tendency(false, false, not.every('a', 'b'))
-  returns: 'a b'
+tendency(false, false, not.every('a', 'b'))
+// returns: 'a b'
 ```
 <a name="not.match"></a>
 
@@ -137,10 +140,10 @@ Inversion of the function match().
 **Example**  
 ```js
 tendency(true, false, not.match(2, 'a', 'b'))
-   // returns: ''
+// returns: ''
 
-   tendency(false, false, not.match(2, 'a', 'b'))
-   // returns: 'a b'
+tendency(false, false, not.match(2, 'a', 'b'))
+// returns: 'a b'
 ```
 <a name="not.max"></a>
 
@@ -160,13 +163,13 @@ Inversion of the function max().
 **Example**  
 ```js
 tendency(not.max(1, 'a', 'b'))
-   // returns: 'a b'
+// returns: 'a b'
 
-   tendency(false, not.max(1, 'a', 'b'))
-   // returns: 'a b'
+tendency(false, not.max(1, 'a', 'b'))
+// returns: 'a b'
 
-   tendency(false, false, not.max(1, 'a', 'b'))
-   // returns: ''
+tendency(false, false, not.max(1, 'a', 'b'))
+// returns: ''
 ```
 <a name="not.min"></a>
 
@@ -186,13 +189,13 @@ Inversion of the function min().
 **Example**  
 ```js
 tendency(not.min(1, 'a', 'b'))
-   // returns: ''
+// returns: ''
 
-   tendency(false, not.min(1, 'a', 'b'))
-   // returns: 'a b'
+tendency(false, not.min(1, 'a', 'b'))
+// returns: 'a b'
 
-   tendency(false, false, not.min(1, 'a', 'b'))
-   // returns: 'a b'
+tendency(false, false, not.min(1, 'a', 'b'))
+// returns: 'a b'
 ```
 <a name="not.some"></a>
 
@@ -211,21 +214,25 @@ Inversion of the function some().
 **Example**  
 ```js
 tendency(not.some('a', 'b'))
-   // returns: ''
+// returns: ''
 
-   tendency(false, not.some('a', 'b'))
-   // returns: 'a b'
+tendency(false, not.some('a', 'b'))
+// returns: 'a b'
 
-   tendency(true, false, not.some('a', 'b'))
-   // returns: 'a b'
+tendency(true, false, not.some('a', 'b'))
+// returns: 'a b'
 ```
 <a name="tendency"></a>
 
 ## tendency(...parameters) ⇒ <code>string</code>
 Transforms specified parameters into joined string based on conditions.
+If no conditions are given, the given environment is both `true` and `false`.
+
+If no flags are given, the flag returned from `every()` is assumed.
+Thus all conditions of the current environment must be `true`.
 
 **Kind**: global function  
-**Returns**: <code>string</code> - - Converted result  
+**Returns**: <code>string</code> - - Generated string  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -234,6 +241,7 @@ Transforms specified parameters into joined string based on conditions.
 **Example**  
 ```js
 tendency(true, 'a', 'b')
+// returns: 'a b'
 ```
 <a name="any"></a>
 
@@ -275,10 +283,10 @@ This always refers to the current environment.
 **Example**  
 ```js
 tendency(true, false, every('a', 'b'))
-   returns: ''
+// returns: ''
 
-   tendency(true, true, every('a', 'b'))
-   returns: 'a b'
+tendency(true, true, every('a', 'b'))
+// returns: 'a b'
 ```
 <a name="group"></a>
 
@@ -297,21 +305,21 @@ Alternatively, parameters can be moved into a separate array.
 **Example**  
 ```js
 tendency(true, group(false, 'a', 'b'))
-   // returns: ''
+// returns: ''
 
-   tendency(false, group(true, 'a', 'b'))
-   // returns: ''
+tendency(false, group(true, 'a', 'b'))
+// returns: ''
 
-   tendency(true, group('a', 'b'))
-   // returns: 'a b'
+tendency(true, group('a', 'b'))
+// returns: 'a b'
 
-   tendency(true, group(true, 'a', 'b'))
-   // returns: 'a b'
+tendency(true, group(true, 'a', 'b'))
+// returns: 'a b'
 
 
-Alternatively:
-   tendency(true, [false, 'a', 'b'])
-   // returns: ''
+// Alternatively:
+tendency(true, [false, 'a', 'b'])
+// returns: ''
 ```
 <a name="match"></a>
 
@@ -329,10 +337,10 @@ Appends parameters if the given `count` of conditions are `true`.
 **Example**  
 ```js
 tendency(true, false, match(2, 'a', 'b'))
-   // returns: ''
+// returns: ''
 
-   tendency(true, true, match(2, 'a', 'b'))
-   // returns: 'a b'
+tendency(true, true, match(2, 'a', 'b'))
+// returns: 'a b'
 ```
 <a name="max"></a>
 
@@ -351,13 +359,13 @@ Parameters are also appended if `count` is exactly equal to the number of condit
 **Example**  
 ```js
 tendency(max(1, 'a', 'b'))
-   // returns: 'a b'
+// returns: 'a b'
 
-   tendency(true, max(1, 'a', 'b'))
-   // returns: 'a b'
+tendency(true, max(1, 'a', 'b'))
+// returns: 'a b'
 
-   tendency(true, true, max(1, 'a', 'b'))
-   // returns: ''
+tendency(true, true, max(1, 'a', 'b'))
+// returns: ''
 ```
 <a name="min"></a>
 
@@ -376,13 +384,13 @@ Parameters are also appended if `count` is exactly equal to the number of condit
 **Example**  
 ```js
 tendency(min(1, 'a', 'b'))
-   // returns: ''
+// returns: ''
 
-   tendency(true, min(1, 'a', 'b'))
-   // returns: 'a b'
+tendency(true, min(1, 'a', 'b'))
+// returns: 'a b'
 
-   tendency(true, true, min(1, 'a', 'b'))
-   // returns: 'a b'
+tendency(true, true, min(1, 'a', 'b'))
+// returns: 'a b'
 ```
 <a name="some"></a>
 
@@ -400,11 +408,11 @@ This always refers to the current environment.
 **Example**  
 ```js
 tendency(some('a', 'b'))
-   // returns: ''
+// returns: ''
 
-   tendency(true, some('a', 'b'))
-   // returns: 'a b'
+tendency(true, some('a', 'b'))
+// returns: 'a b'
 
-   tendency(true, false, some('a', 'b'))
-   // returns: 'a b'
+tendency(true, false, some('a', 'b'))
+// returns: 'a b'
 ```
