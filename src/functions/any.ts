@@ -8,7 +8,8 @@ import { Flag, Parameter } from '../types/index'
  *
  * @example
  *
- *    any('a', 'b')
+ *    tendency(true, false, any('a', 'b'))
+ *    // returns: 'a b'
  */
 const any = (...parameters: Parameter[]): Flag => {
   return {
