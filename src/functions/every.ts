@@ -8,7 +8,8 @@ import { Parameter } from '../types/index'
  *
  * @example
  *
- *    every('a', 'b')
+ *    tendency(true, true, false, every('a', 'b'))
+ *    returns: ''
  */
 const every = (...parameters: Parameter[]): Parameter[] => parameters
 export default every
