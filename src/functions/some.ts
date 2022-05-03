@@ -2,19 +2,20 @@ import { Flag, Parameter } from '../types/index'
 
 /**
  * Appends parameters if at least one condition is true.
+ * This always refers to the current environment.
  * @function
  * @param parameters {...Parameter} - Multiple parameters
  * @return {Flag} - Corresponding Flag
  *
  * @example
  *
- *    some('a', 'b')
+ *    tendency(some('a', 'b'))
  *    // returns: ''
  *
- *    some(true, 'a', 'b')
+ *    tendency(true, some('a', 'b'))
  *    // returns: 'a b'
  *
- *    some(true, false, false, 'a', 'b')
+ *    tendency(true, false, some('a', 'b'))
  *    // returns: 'a b'
  */
 const some = (...parameters: Parameter[]): Flag => {

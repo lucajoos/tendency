@@ -13,6 +13,7 @@ const invert = (flag: Flag): Flag => ({
 const not = {
   /**
    * Appends parameters if all conditions are false.
+   * This always refers to the current environment.
    * Inversion of the function every().
    * @function
    * @param parameters {...Parameter} - Multiple parameters
@@ -96,6 +97,7 @@ const not = {
 
   /**
    * Appends parameters if at least one condition is false.
+   * This always refers to the current environment.
    * Inversion of the function some().
    * @function
    * @param parameters {...Parameter} - Multiple parameters
