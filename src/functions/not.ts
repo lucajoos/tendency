@@ -33,6 +33,24 @@ const not = {
   }),
 
   /**
+   * Appends parameters if the given count of conditions are false.
+   * Inversion of the function match().
+   * @function
+   * @param count {number} - Exact number of invalid conditions
+   * @param parameters {...Parameter} - Multiple parameters
+   * @return {Flag} - Corresponding Flag
+   *
+   * @example
+   *
+   *    tendency(true, false, not.match(2, 'a', 'b'))
+   *    // returns: ''
+   *
+   *    tendency(false, false, not.match(2, 'a', 'b'))
+   *    // returns: 'a b'
+   */
+  match: (count: number, ...parameters: Parameter[]): Flag => invert(match(count, ...parameters)),
+
+  /**
    * Appends parameters if at least one condition is invalid.
    * @function
    * @param parameters {...Parameter} - Multiple parameters
@@ -43,19 +61,6 @@ const not = {
    *    not.some('a', 'b')
    */
   some: (...parameters: Parameter[]): Flag => invert(some(...parameters)),
-
-  /**
-   * Appends parameters if the given count of conditions are false.
-   * @function
-   * @param count {number} - Exact number of invalid conditions
-   * @param parameters {...Parameter} - Multiple parameters
-   * @return {Flag} - Corresponding Flag
-   *
-   * @example
-   *
-   *    not.match(1, 'a', 'b')
-   */
-  match: (count: number, ...parameters: Parameter[]): Flag => invert(match(count, ...parameters)),
 
   /**
    * Appends parameters if the minimum number of conditions are false.
