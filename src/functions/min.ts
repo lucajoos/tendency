@@ -10,13 +10,13 @@ import { Flag, Parameter } from '../types/index'
  *
  * @example
  *
- *    min(1, 'a', 'b')
+ *    tendency(min(1, 'a', 'b'))
  *    // returns: ''
  *
- *    min(1, true, 'a', 'b')
+ *    tendency(true, min(1, 'a', 'b'))
  *    // returns: 'a b'
  *
- *    min(1, true, true, 'a', 'b')
+ *    tendency(true, true, min(1, 'a', 'b'))
  *    // returns: 'a b'
  */
 const min = (count: number, ...parameters: Parameter[]): Flag => {
