@@ -9,7 +9,11 @@ import { Flag, Parameter } from '../types/index'
  *
  * @example
  *
- *    match(1, 'a', 'b')
+ *    tendency(true, false, match(2, 'a', 'b'))
+ *    returns: ''
+ *
+ *    tendency(true, true, match(2, 'a', 'b'))
+ *    returns: 'a b'
  */
 const match = (count: number, ...parameters: Parameter[]): Flag => {
   return {
